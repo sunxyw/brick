@@ -3,3 +3,8 @@
 # Add the requirements you need to this file.
 # or run `make init` to create this file automatically based on the template.
 # You can also run `make switch-to-poetry` to use the poetry package manager.
+
+typer~=0.6.1
+pytest~=7.2.0
+brick~=0.1.0
+setuptools~=65.5.0
