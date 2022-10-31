@@ -1,5 +1,6 @@
 """CLI interface for brick project."""
 import typer
+
 from brick.cmd import version
 
 app = typer.Typer()
