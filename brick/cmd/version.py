@@ -1,9 +1,8 @@
-import os.path
+from pathlib import Path
 
 import requests
 import typer
 from rich import print
-from pathlib import Path
 
 app = typer.Typer()
 
