@@ -1,0 +1,41 @@
+from dynaconf import Dynaconf
+
+from dynaconf.loaders.toml_loader import write
+
+
+
+settings <- Dynaconf(
+
+    envvar_prefix="DYNACONF",
+
+    settings_files=['settings.toml', '.secrets.toml'],
+
+)
+
+
+
+
+
+FUNCTION write_config(key: str, value: str):
+
+    """Write configuration to toml file. Nested keys are supported."""
+
+    IF "." in key:
+
+        key_list <- key.split(".")
+
+        key <- key_list[0]
+
+        nested_key <- ".".join(key_list[1:])
+
+        merging_setting <- {key: {nested_key: value}}
+
+    else:
+
+        merging_setting <- {key: value}
+
+    ENDIF
+    write("settings.toml", merging_setting, merge=True)
+
+    settings.reload()
+

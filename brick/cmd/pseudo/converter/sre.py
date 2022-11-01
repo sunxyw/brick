@@ -1,7 +1,9 @@
 import re
 
+from brick.cmd.pseudo import Converter
 
-class Converter:
+
+class SREConverter(Converter):
     CONVERSIONS = {
         "basic": {
             "for": "FOR",
@@ -21,19 +23,10 @@ class Converter:
             "in": "IN",
         },
         "prefix": {"=": "SET ", "#F": "CALL "},
-        "advanced": {"print": "OUTPUT", "return": "RETURN", "input": "INPUT"},
+        "advanced": {"print": "Print", "return": "RETURN", "input": "INPUT"},
     }
 
-    def __init__(self, source_file, target_file):
-        self.source_file = source_file
-        self.target_file = target_file
-
-    def read_source(self):
-        source_file = open(self.source_file, "r+")
-        return source_file.readlines()
-
-    def convert(self):
-        source_lines = self.read_source()
+    def convert(self, source_lines):
         for line in source_lines:
             line_index = source_lines.index(line)
             line = str(line)
@@ -57,8 +50,3 @@ class Converter:
                         del line[line.index(word)]
             source_lines[line_index] = "".join(line)
         return source_lines
-
-    def write_target(self, lines):
-        file = open(self.target_file, "w", encoding="utf8")
-        for line in lines:
-            print(line, file=file)

@@ -1,3 +1,7 @@
+[pseudo]
+converter = "laqa"
+convert = "laqa"
+
 [foo]
 bar = "bax"
 

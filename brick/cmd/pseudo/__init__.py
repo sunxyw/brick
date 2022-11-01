@@ -1,6 +1,6 @@
 import typer
 
-from brick.cmd.pseudo.converter import Converter
+from brick.cmd.pseudo.converter import Converter, get_converter
 
 app = typer.Typer()
 
@@ -8,6 +8,4 @@ app = typer.Typer()
 @app.command()
 def convert(source: str):
     """Convert a python file to a brick file."""
-    pseudo_converter = Converter(source, source + ".pseudo")
-    lines = pseudo_converter.convert()
-    pseudo_converter.write_target(lines)
+    get_converter()(source, source + ".brick").convert_file()
